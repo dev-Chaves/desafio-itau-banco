@@ -10,7 +10,7 @@ public class Transacao {
 
     public Transacao(double valor, OffsetDateTime dataHora) {
         this.valor = valor;
-        this.dataHora = dataHora.now();
+        this.dataHora = OffsetDateTime.now();
     }
 
     @Override
