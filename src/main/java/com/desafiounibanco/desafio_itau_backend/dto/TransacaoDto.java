@@ -1,4 +1,6 @@
 package com.desafiounibanco.desafio_itau_backend.dto;
 
-public class TransacaoDto {
+import java.time.OffsetDateTime;
+
+public record TransacaoDto(Double valor, OffsetDateTime dateTime) {
 }
