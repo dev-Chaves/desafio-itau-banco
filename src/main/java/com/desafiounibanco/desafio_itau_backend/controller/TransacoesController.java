@@ -30,4 +30,11 @@ public class TransacoesController {
         return transacaoServices.makeTransition(transacaoDto);
     };
 
+    @DeleteMapping("/transacao")
+    public ResponseEntity<Transacao> deleteAll(){
+
+        return transacaoServices.deleteAll();
+
+    }
+
 }
