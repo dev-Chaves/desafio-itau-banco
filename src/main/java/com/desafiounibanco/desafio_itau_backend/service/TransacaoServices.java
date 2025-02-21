@@ -42,4 +42,13 @@ public class TransacaoServices {
         return ResponseEntity.status(HttpStatus.CREATED).body(transacao);
 
     }
+
+    public ResponseEntity<Transacao> deleteAll(){
+
+        transacoes.clear();
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+
+    }
+
 }
