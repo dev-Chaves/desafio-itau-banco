@@ -2,7 +2,7 @@ package com.desafiounibanco.desafio_itau_backend.service;
 
 import com.desafiounibanco.desafio_itau_backend.domain.Transacao;
 import com.desafiounibanco.desafio_itau_backend.dto.TransacaoDto;
-import org.springframework.beans.BeanUtils;
+import com.desafiounibanco.desafio_itau_backend.infrastructure.exceptions.DataInvalidaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,18 +18,15 @@ public class TransacaoServices {
     private static List<Transacao> transacoes;
 
     static{
-        transacoes = new ArrayList<>(List.of(new Transacao(100, OffsetDateTime.now())));
+        transacoes = new ArrayList<>(List.of(new Transacao(100.0, OffsetDateTime.now())));
     }
+
 
     public List<Transacao> listTransacao(){
         return transacoes;
     }
 
     public ResponseEntity<Transacao> makeTransition(@RequestBody TransacaoDto transacaoDto){
-
-        if (transacaoDto.dateTime().isAfter(OffsetDateTime.now())){
-            throw new DataInvalidaException("Data Inválida");
-        }
 
         if (transacaoDto.valor() == null) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
@@ -55,4 +52,10 @@ public class TransacaoServices {
 
     }
 
+    public List<Transacao>buscarTransacoes(Integer seconds){
+
+        OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(seconds);
+
+        return transacoes.stream().filter(transacao -> transacao.getDataHora().isAfter(dataHoraIntervalo)).toList();
+    }
 }
