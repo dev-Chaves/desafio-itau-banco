@@ -27,6 +27,10 @@ public class TransacaoServices {
 
     public ResponseEntity<Transacao> makeTransition(@RequestBody TransacaoDto transacaoDto){
 
+        if (transacaoDto.dateTime().isAfter(OffsetDateTime.now())){
+            throw new DataInvalidaException("Data Inválida");
+        }
+
         if (transacaoDto.valor() == null) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
         }
