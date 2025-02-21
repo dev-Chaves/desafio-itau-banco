@@ -66,4 +66,95 @@ Respostas Possíveis:
 - 200 OK.
 - 400 Bad Request: Requisição malformada.
 
-**INCOMPLETO AINDA**
+**Ver estátisticas: get /estatisticas
+Mostrar estátisticas como:.**
+
+- count	Quantidade de transações nos últimos 60 segundos	
+- sum	Soma total do valor transacionado nos últimos 60 segundos	
+- avg	Média do valor transacionado nos últimos 60 segundos	
+- min	Menor valor transacionado nos últimos 60 segundos	
+- max	Maior valor transacionado nos últimos 60 segundos	
+
+Exemplo de Requisição:
+
+    {
+    "count": 10,
+    "sum": 1234.56,
+    "avg": 123.456,
+    "min": 12.34,
+    "max": 123.56
+    }
+
+## Melhorias Futuras (Checklist)
+✅ Testes Automatizados
+
+- Adicionar testes unitários e funcionais robustos, incluindo cenários de erro (ex: transações inválidas, timeout).
+
+- Cobrir 100% dos caminhos críticos com JUnit 5 + Mockito.
+
+✅ **Containerização**
+
+- Criar Dockerfile para empacotar a aplicação.
+
+- Configurar docker-compose.yml para ambiente de desenvolvimento.
+
+✅ **Logs Estruturados**
+
+- Implementar logs em formato JSON para análise em ferramentas como ELK Stack.
+
+- Níveis configuráveis por ambiente (ex: DEBUG em dev, WARN em prod).
+
+✅ Observabilidade
+
+- Adicionar endpoint /health com Spring Boot Actuator para healthcheck.
+
+- Incluir métricas de performance via /metrics (tempo de resposta, uso de memória).
+
+✅ **Performance**
+
+- Medir tempo de cálculo das estatísticas usando StopWatch ou Micrometer.
+
+- Otimizar filtragem de transações com estruturas de dados eficientes (ex: TreeMap ordenado por timestamp).
+
+✅ **Tratamento de Erros**
+
+- Customizar respostas de erro com @ControllerAdvice e mensagens amigáveis (ex: { "erro": "Transação futura", "detalhes": "dataHora inválida" }).
+
+✅ **Documentação da API**
+
+- Integrar Swagger/OpenAPI com exemplos de requisições e respostas.
+
+- Disponibilizar documentação interativa em /swagger-ui.html.
+
+✅ **Documentação do Sistema**
+
+- Detalhar passos para build (mvn clean install) e execução (java -jar ou docker-compose up).
+
+**Incluir pré-requisitos (Java 21+, Docker, Maven).**
+
+🌟 **Progresso:**
+
+Testes Automatizados
+
+Containerização
+
+Logs Estruturados
+
+Observabilidade
+
+Performance
+
+Tratamento de Erros
+
+Documentação da API
+
+Documentação do Sistema
+
+Configurações Flexíveis
+
+Atualizado em: 07/08/2024
+
+Contribuições são bem-vindas!
+🔗 Clone o repositório e abra um PR para colaborar. 😊
+
+
